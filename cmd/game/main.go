@@ -11,34 +11,35 @@ import (
 )
 
 func init() {
-	// OpenGL requer que as operações sejam executadas na thread principal
+	// OpenGL requires operations to be executed on the main thread
 	runtime.LockOSThread()
 }
 
 func main() {
-	fmt.Println("Iniciando Magic and Blades...")
+	fmt.Println("Starting Magic and Blades...")
 
-	// Inicializar SDL
+	// Initialize SDL
 	if err := sdl.Init(sdl.INIT_EVERYTHING); err != nil {
-		log.Fatalf("Falha ao inicializar SDL: %v", err)
+		log.Fatalf("Failed to initialize SDL: %v", err)
 	}
 	defer sdl.Quit()
 
-	// Configurações do jogo
+	// Game configuration
 	config := game.Config{
-		WindowTitle:  "Magic and Blades - Hello World",
+		WindowTitle:  "Magic and Blades",
 		WindowWidth:  800,
 		WindowHeight: 600,
 		Fullscreen:   false,
+		Language:     "", // Auto-detect language
 	}
 
-	// Inicializar motor do jogo
+	// Initialize game engine
 	gameEngine, err := engine.NewEngine(config)
 	if err != nil {
-		log.Fatalf("Falha ao criar engine: %v", err)
+		log.Fatalf("Failed to create engine: %v", err)
 	}
 	defer gameEngine.Destroy()
 
-	// Loop principal do jogo
+	// Main game loop
 	gameEngine.Run()
 }

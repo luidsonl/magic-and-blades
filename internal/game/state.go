@@ -1,13 +1,16 @@
 package game
 
-// State representa o estado atual do jogo
-type State struct {
-	Running bool
+// GameState represents the overall game state
+type GameState struct {
+	Running      bool
+	CurrentScene string
+	// Add other game state variables as needed
 }
 
-// NewState cria um novo estado do jogo
-func NewState() *State {
-	return &State{
-		Running: true,
+// NewState creates a new game state
+func NewState() *GameState {
+	return &GameState{
+		Running:      true,
+		CurrentScene: "menu",
 	}
 }
